@@ -1,7 +1,7 @@
 // JavaScript logic for the vacation wizard
 
 let answers = {};
-const totalQuestions = 10;
+const totalQuestions = 9;
 
 function updateProgressBar(currentQuestionNumber) {
   const progressPercentage = (currentQuestionNumber / totalQuestions) * 100;
@@ -53,40 +53,32 @@ function showRecommendation(vibe) {
 
   // Determine recommendation based on answers (fine-tuned logic)
   let recommendation = "";
-  if (answers['question8'] === 'caribbean_mexico') {
-    if (answers['question4'] === 'hot') {
-      if (answers['question5'] === 'beach') {
-        if (answers['question3'] === 'under_2000') {
-          recommendation = "We recommend a budget-friendly all-inclusive resort in Punta Cana, Dominican Republic. Enjoy beautiful beaches and amenities like free breakfast, multiple pools, and activities without breaking the bank.";
-        } else if (answers['question3'] === '2000_5000') {
-          recommendation = "Consider a mid-range all-inclusive resort in Cancun, Mexico, with amenities like on-site dining, spa services, and entertainment options ideal for relaxation and fun.";
-        } else if (answers['question3'] === '5000_10000') {
-          recommendation = "An upscale all-inclusive resort in Montego Bay, Jamaica, could be perfect for you. Enjoy premium amenities like gourmet restaurants, beach cabanas, water sports, and spa treatments.";
-        } else if (answers['question3'] === 'over_10000') {
-          recommendation = "For a luxury experience, we recommend staying at a high-end resort in Turks and Caicos, with private villas, butler service, and exclusive beach access for the ultimate vacation.";
-        }
-      } else if (answers['question5'] === 'urban') {
-        if (answers['question3'] === 'under_2000') {
-          recommendation = "Explore Mexico City on a budget, with affordable boutique hotels and plenty of cultural activities, street food, and historical sights to explore.";
-        } else if (answers['question3'] === '2000_5000') {
-          recommendation = "Stay in a comfortable mid-range hotel in Havana, Cuba, with access to guided city tours, local restaurants, and vibrant nightlife.";
-        } else if (answers['question3'] === '5000_10000') {
-          recommendation = "A premium experience in San Juan, Puerto Rico, with stays in luxury hotels offering rooftop pools, fine dining, and historical excursions awaits you.";
-        } else if (answers['question3'] === 'over_10000') {
-          recommendation = "Enjoy a luxurious urban escape in Cartagena, Colombia, with private guided tours, fine dining experiences, and stays in the best 5-star hotels in the city.";
-        }
+
+  // All-inclusive resort recommendations based on answers
+  if (answers['question1'] === 'winter' || answers['question1'] === 'spring' || answers['question1'] === 'summer' || answers['question1'] === 'fall') {
+    if (answers['question4'] === 'hot' && answers['question5'] === 'beach') {
+      if (answers['question3'] === 'under_2000') {
+        recommendation = "We recommend staying at Riu Naiboa, Punta Cana - a budget-friendly all-inclusive resort with great beach access and activities for everyone.";
+      } else if (answers['question3'] === '2000_5000') {
+        recommendation = "Consider staying at the Royalton Riviera Cancun Resort & Spa in Mexico, which offers a great balance of luxury and value, with all-inclusive amenities and plenty of entertainment options.";
+      } else if (answers['question3'] === '5000_10000') {
+        recommendation = "An excellent option for you would be Sandals Montego Bay in Jamaica, an upscale all-inclusive resort with private beach access, water sports, and gourmet dining.";
+      } else if (answers['question3'] === 'over_10000') {
+        recommendation = "For a luxury experience, we suggest Jade Mountain Resort in St. Lucia, an all-inclusive resort with private infinity pools, stunning views, and top-notch service for the ultimate exclusive getaway.";
+      }
+    } else if (answers['question4'] === 'hot' && answers['question5'] === 'urban') {
+      if (answers['question3'] === 'under_2000') {
+        recommendation = "Explore the beautiful city of San Juan, Puerto Rico, staying at a budget-friendly all-inclusive resort like the Caribe Hilton, offering a mix of beach and urban experience.";
+      } else if (answers['question3'] === '2000_5000') {
+        recommendation = "Stay at Fiesta Americana Condesa in Cancun, offering an all-inclusive experience in an urban setting with easy access to cultural landmarks and vibrant nightlife.";
+      } else if (answers['question3'] === '5000_10000') {
+        recommendation = "Try Hyatt Ziva in Montego Bay, Jamaica - an all-inclusive resort that provides luxury, city excursions, and a beach atmosphere, perfect for those who want the best of both worlds.";
+      } else if (answers['question3'] === 'over_10000') {
+        recommendation = "Consider Atlantis Paradise Island in the Bahamas, a high-end all-inclusive resort with luxurious accommodations, dining, shopping, and entertainment all within reach.";
       }
     } else if (answers['question4'] === 'mild') {
-      recommendation = "We recommend exploring the lush landscapes of Costa Rica during the mild season for a mix of adventure and relaxation, with options for budget or luxury stays.";
-    } else {
-      recommendation = "Based on your preferences, we suggest exploring the beautiful landscapes of New Zealand!";
+      recommendation = "Explore the lush, all-inclusive eco-resorts of Costa Rica, such as the Andaz Costa Rica Resort at Peninsula Papagayo, perfect for a mix of adventure and relaxation with breathtaking nature experiences.";
     }
-  } else if (answers['question8'] === 'north_america') {
-    recommendation = "Consider a trip to the beautiful national parks in the USA or Canada for a blend of adventure, nature, and relaxation.";
-  } else if (answers['question8'] === 'europe') {
-    recommendation = "Explore the rich history, culture, and beautiful landscapes of Europe. Consider destinations like Paris, Rome, or Santorini based on your preferences.";
-  } else if (answers['question8'] === 'anywhere') {
-    recommendation = "You seem open to any adventure! Consider a round-the-world trip to explore diverse landscapes and cultures.";
   }
 
   // Hide the current panel and show the recommendation
